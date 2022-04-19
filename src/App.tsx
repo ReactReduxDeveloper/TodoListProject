@@ -6,31 +6,39 @@ import {v1} from "uuid";
 
 function App() {
 
-    const AddFunction = (title:string)=> {
+    const AddFunction = (title: string) => {
         let Task = {id: v1(), title: title, isDone: false}
         let NewTasks = [Task, ...tasks]
         SetTasks(NewTasks)
     }
-    const FinalFunc = (value:TypeforFilteredValue)=> {
+    const FinalFunc = (value: TypeforFilteredValue) => {
         SetFilter(value)
 
     }
-    const [tasks,SetTasks] = useState<Array<TaskType>>( [
-        { id: v1(), title: "HTML&CSS", isDone: true},
-        { id: v1(), title: "JS", isDone: true },
-        { id: v1(), title: "ReactJS", isDone: true },
-        ])
-    const removefunc =(TaskID: string)=> {
-        const Filteredtasks = tasks.filter(el=> el.id !== TaskID)
+    const [tasks, SetTasks] = useState<Array<TaskType>>([
+        {id: v1(), title: "HTML&CSS", isDone: true},
+        {id: v1(), title: "JS", isDone: true},
+        {id: v1(), title: "ReactJS", isDone: true},
+    ])
+    const ChangeIsDone = (taskID: string, isDone: boolean) => {
+        let ChangeT = tasks.find(t => t.id === taskID)
+        if (ChangeT) {
+            ChangeT.isDone = isDone
+        }
+
+        SetTasks([...tasks])
+    }
+    const removefunc = (TaskID: string) => {
+        const Filteredtasks = tasks.filter(el => el.id !== TaskID)
         SetTasks(Filteredtasks)
     }
-const [filter,SetFilter] = useState<TypeforFilteredValue>("all")
+    const [filter, SetFilter] = useState<TypeforFilteredValue>("all")
     const getFilteredTasksForRender = () => {
         switch (filter) {
             case "completed":
                 return tasks.filter(el => el.isDone)
             case "active":
-                return tasks.filter(el =>el.isDone === false)
+                return tasks.filter(el => el.isDone === false)
             default:
                 return tasks
 
@@ -41,13 +49,10 @@ const [filter,SetFilter] = useState<TypeforFilteredValue>("all")
     }
 
 
-
-
-
-
     return (
         <div className="App">
-            <Todolist title="What to learn" tasks={getFilteredTasksForRender()} FuncR={removefunc} FinFunc={FinalFunc} AddTaskFunction={AddFunction}/>
+            <Todolist title="What to learn" tasks={getFilteredTasksForRender()} FuncR={removefunc} FinFunc={FinalFunc}
+                      AddTaskFunction={AddFunction} ChangeIsDone={ChangeIsDone}/>
 
         </div>
     );

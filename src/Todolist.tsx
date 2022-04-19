@@ -13,28 +13,47 @@ export type PropsType = {
     FuncR: (TaskID: string) => void
     FinFunc: (value: TypeforFilteredValue) => void
     AddTaskFunction: (title: string) => void
+    ChangeIsDone: (taskID: string, isDone: boolean) => void
 }
 export type TypeforFilteredValue = "all" | "active" | "completed"
 
 export function Todolist(props: PropsType) {
+
     const [title, SetTitle] = useState(" ")
+    const [error, setError] = useState<string | null>(null)
     const task = props.tasks.map((el) => {
-        return (<li key={el.id}><input type="checkbox" checked={el.isDone}/> <span>{el.title}</span>
+        const OnchangeHandler2 = (e: ChangeEvent<HTMLInputElement>) => {
+            props.ChangeIsDone(el.id, e.currentTarget.checked)
+
+        }
+        return (<li key={el.id}>
+            <input type="checkbox"
+                   onChange={OnchangeHandler2}
+                   checked={el.isDone}
+
+            />
+            <span>{el.title}</span>
             <button onClick={() => {
                 props.FuncR(el.id)
             }}>X
             </button>
         </li>)
     })
+
     const AddTaskF = () => {
-        props.AddTaskFunction(title);
-        SetTitle("")
+        if (title.trim() === "") {
+            props.AddTaskFunction(title.trim());
+            SetTitle("")
+        } else {
+            setError("Title is required")
+        }
     }
     const OnChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         SetTitle(e.currentTarget.value)
     }
     const OnKeyHandler = (el: KeyboardEvent<HTMLInputElement>) => {
-        if (el.charCode === 13 && el.ctrlKey) {
+        setError(null)
+        if (el.charCode === 13) {
             AddTaskF();
         }
     }
@@ -54,9 +73,10 @@ export function Todolist(props: PropsType) {
             <input value={title}
                    onChange={OnChangeHandler}
                    onKeyPress={OnKeyHandler}
+                   className="error"
             />
             <button onClick={AddTaskF}>+</button>
-
+            {error && <div className="error-message">{error}</div>}
         </div>
         <ul>
             {task}
