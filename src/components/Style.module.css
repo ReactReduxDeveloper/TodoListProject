@@ -17,32 +17,41 @@ body {
 }
 
 .Counter {
-    width: 250px;
-    height: 200px;
+    width: 350px;
+    /*height: 200px;*/
     background-color: #2A2B33FF;
     border: 3px solid #60CFF0FF;
     border-radius: 4px;
     padding: 20px;
+    margin: 30px;
 }
 
 .Display {
     width: 100%;
-    height: 100px;
+    min-height: 100px;
     margin-bottom: 20px;
-    background-color: #60CFF0FF;
-    color: #2A2B33FF;
-    font-size: 50px;
+    background-color: #2A2B33FF;
+    color: #60CFF0FF;
+    font-size: 2vw;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    /*align-items: center;*/
+    border: 3px solid #60CFF0FF;
+    border-radius: 3px;
+    flex-direction: column;
+    padding: 8px 15px;
 }
 
+.MaxValueInput {
+    margin-bottom: 20px;
+}
 
-/*.btn {*/
-/*    padding: 5px 10px;*/
-/*    text-align: center;*/
-/*    background-color: #60CFF0FF;*/
-/*}*/
+.btn {
+    padding: 5px 10px;
+    text-align: center;
+    background-color: #60CFF0FF;
+    border-radius: 30%;
+    cursor: pointer;
+}
 
 
 .Buttons {
@@ -58,37 +67,57 @@ body {
     padding: 0 10px;
 }
 
-.ButtonInc {
-    width: 40px;
-    height: 20px;
-    background-color: #60CFF0FF;
-    /*margin: 10px;*/
-    text-align: center
+.Buttons_Set {
+    width: 204px;
+    height: 40px;
+    /*margin: 20px;*/
+    border: 3px solid #60CFF0FF;
+    background-color: #2A2B33FF;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
 }
 
-.ButtonReset {
-    width: 60px;
-    height: 20px;
-    background-color: #60CFF0FF;
-    /*margin: 10px;*/
-    text-align: center;
-    /*position: relative;*/
-    /*right: -60px;*/
-}
 
 .Red {
     width: 100%;
     height: 100px;
     margin-bottom: 20px;
-    background-color: #60CFF0FF;
+    background-color: #2A2B33FF;
     color: red;
-    font-size: 50px;
+    font-size: 2vw;
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 3px solid #60CFF0FF;
+    border-radius: 3px;
 
 }
 
 .Disable {
     background-color: #4D707FFF;
+}
+
+.value {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.name {
+    margin-right: 20px;
+}
+
+.iniInput {
+    width: 100%;
+    flex: 1;
+}
+
+.Input {
+    height: 35px;
+    width: 100%;
+    border:solid 2px #60CFF0FF;
+    text-align: center;
 }
