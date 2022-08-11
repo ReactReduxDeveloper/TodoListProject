@@ -33,12 +33,13 @@ function App() {
         <div className={s.App}>
             <div className={s.Counter}>
                 <Display counter={counter} maxValue={maxValue}/>
-                <Buttons counter={counter} IncPlus={IncPlus} ResetCounter={ResetCounter} maxValue={maxValue} startValue={startValue}/>
+                <ButtonUniversal />
+                <ButtonUniversal />
             </div>
             <div className={s.Counter}>
                 <DisplayValues maxValue={maxValue} startValue={startValue} OnChangeMaxHandler={OnChangeMaxHandler}
                                OnChangeStartHandler={OnChangeStartHandler}/>
-                <ButtonsSet SetFunction={SetFunction}/>
+                <ButtonUniversal/>
             </div>
         </div>
     )
