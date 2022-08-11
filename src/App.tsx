@@ -1,61 +1,48 @@
-import React, {useState} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import './App.css';
-import {TaskType, Todolist, TypeforFilteredValue} from './Todolist';
-import {v1} from "uuid";
-
+import s from "./components/Style.module.css"
+import {Display} from "./components/Display";
+import {Buttons} from "./components/Buttons";
+import {ButtonsSet} from "./components/ButtonSet";
+import {DisplayValues} from "./components/DisplayValues";
+import {StartValue} from "./components/Values/StartValue";
 
 function App() {
-
-    const AddFunction = (title: string) => {
-        let Task = {id: v1(), title: title, isDone: false}
-        let NewTasks = [Task, ...tasks]
-        SetTasks(NewTasks)
+    let [counter, setCounter] = useState(0)
+    let [maxValue, setMaxValue] = useState(0)
+    let [startValue, setStartValue] = useState(0)
+    const OnChangeMaxHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        setMaxValue(Number(e.currentTarget.value))
     }
-    const FinalFunc = (value: TypeforFilteredValue) => {
-        SetFilter(value)
-
+    const OnChangeStartHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        setStartValue(+e.currentTarget.value)
     }
-    const [tasks, SetTasks] = useState<Array<TaskType>>([
-        {id: v1(), title: "HTML&CSS", isDone: true},
-        {id: v1(), title: "JS", isDone: true},
-        {id: v1(), title: "ReactJS", isDone: true},
-    ])
-    const ChangeIsDone = (taskID: string, isDone: boolean) => {
-        let ChangeT = tasks.find(t => t.id === taskID)
-        if (ChangeT) {
-            ChangeT.isDone = isDone
-        }
+    const SetFunction = () => {
 
-        SetTasks([...tasks])
+        localStorage.setItem("Start Value", JSON.stringify(startValue))
+        localStorage.setItem("Max Value", JSON.stringify(maxValue))
     }
-    const removefunc = (TaskID: string) => {
-        const Filteredtasks = tasks.filter(el => el.id !== TaskID)
-        SetTasks(Filteredtasks)
+    let IncPlus = () => {
+        setCounter(counter + 1)
     }
-    const [filter, SetFilter] = useState<TypeforFilteredValue>("all")
-    const getFilteredTasksForRender = () => {
-        switch (filter) {
-            case "completed":
-                return tasks.filter(el => el.isDone)
-            case "active":
-                return tasks.filter(el => el.isDone === false)
-            default:
-                return tasks
-
-
-        }
-
-
+    let ResetCounter = () => {
+        setCounter(startValue)
     }
-
-
     return (
-        <div className="App">
-            <Todolist title="What to learn" tasks={getFilteredTasksForRender()} FuncR={removefunc} FinFunc={FinalFunc}
-                      AddTaskFunction={AddFunction} ChangeIsDone={ChangeIsDone}/>
 
+        <div className={s.App}>
+            <div className={s.Counter}>
+                <Display counter={counter} maxValue={maxValue}/>
+                <Buttons counter={counter} IncPlus={IncPlus} ResetCounter={ResetCounter} maxValue={maxValue} startValue={startValue}/>
+            </div>
+            <div className={s.Counter}>
+                <DisplayValues maxValue={maxValue} startValue={startValue} OnChangeMaxHandler={OnChangeMaxHandler}
+                               OnChangeStartHandler={OnChangeStartHandler}/>
+                <ButtonsSet SetFunction={SetFunction}/>
+            </div>
         </div>
-    );
+    )
+
 }
 
 export default App;

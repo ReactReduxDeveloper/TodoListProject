@@ -1,0 +1,94 @@
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #2A2B33FF;
+}
+
+.App {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center
+}
+
+.Counter {
+    width: 250px;
+    height: 200px;
+    background-color: #2A2B33FF;
+    border: 3px solid #60CFF0FF;
+    border-radius: 4px;
+    padding: 20px;
+}
+
+.Display {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 20px;
+    background-color: #60CFF0FF;
+    color: #2A2B33FF;
+    font-size: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/*.btn {*/
+/*    padding: 5px 10px;*/
+/*    text-align: center;*/
+/*    background-color: #60CFF0FF;*/
+/*}*/
+
+
+.Buttons {
+    width: 204px;
+    height: 40px;
+    /*margin: 20px;*/
+    border: 3px solid #60CFF0FF;
+    background-color: #2A2B33FF;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+.ButtonInc {
+    width: 40px;
+    height: 20px;
+    background-color: #60CFF0FF;
+    /*margin: 10px;*/
+    text-align: center
+}
+
+.ButtonReset {
+    width: 60px;
+    height: 20px;
+    background-color: #60CFF0FF;
+    /*margin: 10px;*/
+    text-align: center;
+    /*position: relative;*/
+    /*right: -60px;*/
+}
+
+.Red {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 20px;
+    background-color: #60CFF0FF;
+    color: red;
+    font-size: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.Disable {
+    background-color: #4D707FFF;
+}
